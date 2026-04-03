@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tax Calculator | FileMyITR — R Vijay & Associates, Jaipur</title>
+  <meta name="description" content="Free GST and Income Tax calculator. Instant calculations for accurate tax planning.">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- NAVBAR - Copied from index.html -->
+  <header class="navbar" id="navbar">
+    <div class="container nav-inner">
+      <a href="index.html" class="logo">
+        <span class="logo-icon">◈</span>
+        <span>FileMyITR</span>
+      </a>
+      <nav class="nav-links" id="navLinks">
+        <a href="index.html#about">About</a>
+        <a href="index.html#services">Services</a>
+        <a href="index.html#pricing">Pricing</a>
+        <a href="index.html#faq">FAQ</a>
+        <a href="index.html#contact">Contact</a>
+      </nav>
+      <div class="nav-right">
+        <a href="tel:+919351515717" class="btn btn-ghost">📞 Call Us</a>
+        <a href="index.html#contact" class="btn btn-primary">File ITR</a>
+        <button class="hamburger" id="hamburger" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO CALCULATOR SECTION -->
+  <section class="hero-calculator">
+    <div class="hero-bg-shapes">
+      <div class="shape shape-1"></div>
+      <div class="shape shape-2"></div>
+    </div>
+    <div class="container">
+      <div class="hero-badge">
+        <span class="badge-dot"></span>
+        Free Tax Tools · Instant Results
+      </div>
+      <h1 class="hero-title">
+        Tax <em>Calculators</em>
+      </h1>
+      <p class="hero-sub">Quickly calculate GST amounts or estimate income tax liability. Professional accuracy for planning & compliance.</p>
+    </div>
+  </section>
+
+  <!-- CALCULATORS GRID -->
+  <section class="calculators section-pad">
+    <div class="container">
+      
+      <!-- GST Calculator -->
+      <div class="calc-card">
+        <div class="calc-header">
+          <div class="mini-icon">💰</div>
+          <h3>GST Calculator</h3>
+          <p>Calculate CGST, SGST & Total with GST</p>
+        </div>
+        
+        <div class="calc-form">
+          <div class="field">
+            <label>Base Amount (₹)</label>
+            <input type="number" id="gstAmount" placeholder="Enter amount" min="0" step="0.01">
+          </div>
+          <div class="field">
+            <label>GST Rate</label>
+            <select id="gstRate">
+              <option value="5">5% (Restaurant)</option>
+              <option value="12">12% (Standard)</option>
+              <option value="18" selected>18% (Most Goods)</option>
+              <option value="28">28% (Luxury)</option>
+            </select>
+          </div>
+          <button class="btn btn-primary btn-full" onclick="calcGST()">Calculate GST</button>
+        </div>
+
+        <div id="gstResult" class="calc-result" style="display:none;">
+          <div class="invoice-box">
+            <div class="line"><span>Base Amount</span><span id="baseAmt">₹0</span></div>
+            <div class="line"><span>CGST (@ <span id="cgstRate">9</span>%)</span><span id="cgstAmt">₹0</span></div>
+            <div class="line"><span>SGST (@ <span id="sgstRate">9</span>%)</span><span id="sgstAmt">₹0</span></div>
+            <hr>
+            <div class="line total"><span>Invoice Total</span><span id="totalGst">₹0</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Income Tax Calculator -->
+      <div class="calc-card">
+        <div class="calc-header">
+          <div class="mini-icon">📊</div>
+          <h3>Income Tax Estimator</h3>
+          <p>AY 2024-25 | New vs Old Regime</p>
+        </div>
+        
+        <div class="calc-form">
+          <div class="field">
+            <label>Annual Income (₹)</label>
+            <input type="number" id="incomeAmt" placeholder="Gross income" min="0" step="1000">
+          </div>
+          <div class="field">
+            <label>Tax Regime</label>
+            <select id="taxRegime">
+              <option value="new">New Regime (Default)</option>
+              <option value="old">Old Regime (with deductions)</option>
+            </select>
+          </div>
+          <button class="btn btn-primary btn-full" onclick="calcIncomeTax()">Calculate Tax</button>
+        </div>
+
+        <div id="taxResult" class="calc-result" style="display:none;">
+          <div class="invoice-box">
+            <div class="line"><span>Gross Income</span><span id="grossInc">₹0</span></div>
+            <hr>
+            <div class="line"><span>Tax Payable</span><span id="taxPayable">₹0</span></div>
+            <div class="line total"><span>Net Income (After Tax)</span><span id="netIncome">₹0</span></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CTA SECTION -->
+  <section class="cta-section section-pad">
+    <div class="container">
+      <div class="text-center">
+        <p class="label-tag">Ready to File?</p>
+        <h2 class="section-heading">Professional ITR Filing</h2>
+        <p class="hero-sub" style="max-width: 580px; margin: 0 auto 2rem;">Our calculators help you plan. Our CA experts ensure maximum refunds and 100% compliance.</p>
+        <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+          <a href="index.html#contact" class="btn btn-primary btn-lg">File ITR Now</a>
+          <a href="tel:+919351515717" class="btn btn-outline btn-lg">Talk to CA (Free)</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER - Simplified -->
+  <footer class="footer">
+    <div class="container">
+      <div style="text-align: center; padding: 2rem 0;">
+        <div class="logo" style="margin-bottom: 1rem;">
+          <span class="logo-icon">◈</span>
+          <span>FileMyITR</span>
+        </div>
+        <p>A service by <strong>R Vijay & Associates</strong>, Jaipur | <a href="tel:+919351515717">+91 93515 15717</a></p>
+        <p style="font-size: 0.8rem; opacity: 0.6;">© 2026 All rights reserved | <a href="index.html#contact">Contact Us</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+  <script>
+    // GST Calculator (Enhanced)
+    function calcGST() {
+      const amount = parseFloat(document.getElementById('gstAmount').value) || 0;
+      const rate = parseFloat(document.getElementById('gstRate').value);
+      
+      if (amount <= 0) return;
+
+      const gstAmt = (amount * rate) / 100;
+      const cgst = gstAmt / 2;
+      const sgst = gstAmt / 2;
+      const total = amount + gstAmt;
+
+      document.getElementById('baseAmt').textContent = `₹${amount.toLocaleString()}`;
+      document.getElementById('cgstRate').textContent = (rate/2);
+      document.getElementById('cgstAmt').textContent = `₹${cgst.toLocaleString(undefined, {minimumFractionDigits: 0, maximumFractionDigits: 2})}`;
+      document.getElementById('sgstRate').textContent = (rate/2);
+      document.getElementById('sgstAmt').textContent = `₹${sgst.toLocaleString(undefined, {minimumFractionDigits: 0, maximumFractionDigits: 2})}`;
+      document.getElementById('totalGst').textContent = `₹${total.toLocaleString(undefined, {minimumFractionDigits: 0, maximumFractionDigits: 2})}`;
+      
+      document.getElementById('gstResult').style.display = 'block';
+    }
+
+    // Income Tax Calculator (AY 2024-25 New Regime Simplified)
+    function calcIncomeTax() {
+      const income = parseFloat(document.getElementById('incomeAmt').value) || 0;
+      const regime = document.getElementById('taxRegime').value;
+      
+      if (income <= 0) return;
+
+      let tax = 0;
+      if (regime === 'new') {
+        // New Tax Regime AY 2024-25 (rebate up to 7L)
+        if (income <= 300000) tax = 0;
+        else if (income <= 700000) tax = Math.max(0, (income - 300000) * 0.05 - 25000); // rebate
+        else if (income <= 1000000) tax = 25000 + (income - 700000) * 0.10;
+        else if (income <= 1200000) tax = 75000 + (income - 1000000) * 0.15;
+        else if (income <= 1500000) tax = 135000 + (income - 1200000) * 0.20;
+        else tax = 195000 + (income - 1500000) * 0.30;
+      } else {
+        // Old Regime (simplified without deductions)
+        if (income <= 250000) tax = 0;
+        else if (income <= 500000) tax = (income - 250000) * 0.05;
+        else if (income <= 1000000) tax = 12500 + (income - 500000) * 0.20;
+        else tax = 112500 + (income - 1000000) * 0.30;
+      }
+
+      const netIncome = income - tax;
+
+      document.getElementById('grossInc').textContent = `₹${income.toLocaleString()}`;
+      document.getElementById('taxPayable').textContent = `₹${Math.round(tax).toLocaleString()}`;
+      document.getElementById('netIncome').textContent = `₹${Math.round(netIncome).toLocaleString()}`;
+      
+      document.getElementById('taxResult').style.display = 'block';
+    }
+
+    // Auto-hide navbar links pointing to index sections
+    document.querySelectorAll('nav a[href^="#"]').forEach(link => {
+      link.href = link.href.replace('#', 'index.html#');
+    });
+  </script>
+</body>
+</html>
