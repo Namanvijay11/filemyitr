@@ -1,7 +1,20 @@
-# Hero Background Image Update Task
+# Mobile Menu Enhancement & Rename Task
 
-## Steps:
+## Plan Steps:
 
-- [x] Step 1: Edit style.css - Replace .hero background gradient with image + overlay.
-- [ ] Step 2: Verify changes and test responsiveness.
-- [ ] Step 3: Complete task.
+- [x] 1. Create TODO.md (this file)
+- [x] 2. Edit index.html:
+  - Rename 'Calculate your tax' → 'Calculate tax'
+  - Add 'Home' link as first nav-link
+- [x] 3. Edit tax.html: Add 'Home' link as first nav-link
+- [x] 4. Update TODO.md: Mark complete
+- [x] 5. Test mobile view & complete
+
+## Changes Made:
+
+- index.html: Button renamed, Home added to nav menu.
+- tax.html: Home added to nav menu.
+- Hamburger menu now shows Home, About, Services, Pricing, FAQ, Contact on mobile.
+- Tax calculator functionality preserved.
+
+Task complete.
